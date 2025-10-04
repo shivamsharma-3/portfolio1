@@ -148,14 +148,18 @@ function createCursorTrails() {
 }
 
 function updateCursorTrails(trails, mouseX, mouseY) {
+    let targetX = mouseX;
+    let targetY = mouseY;
     trails.forEach((trail, index) => {
         setTimeout(() => {
-            trail.x += (mouseX - trail.x) * 0.3;
-            trail.y += (mouseY - trail.y) * 0.3;
+            const spring = 0.08 + (index * 0.02);
+
+            trail.x += (mouseX - trail.x) * 0.5;
+            trail.y += (mouseY - trail.y) * 0.5;
             
             trail.element.style.left = trail.x + 'px';
             trail.element.style.top = trail.y + 'px';
-        }, index * 8);
+        }, index * 12);
     });
 }
 
